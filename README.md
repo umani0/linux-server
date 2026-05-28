@@ -40,7 +40,7 @@ This mini-project demonstrates basic Linux server administration skills. The ser
 
 ## Useful Commands
 
-bash```
+```bash
 sudo systemctl status nginx
 sudo systemctl status ssh
 sudo ufw status verbose
