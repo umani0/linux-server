@@ -41,6 +41,7 @@ This mini-project demonstrates basic Linux server administration skills. The ser
 ## Useful Commands
 
 bash
+```
 sudo systemctl status nginx
 sudo systemctl status ssh
 sudo ufw status verbose
@@ -49,3 +50,4 @@ journalctl -u ssh
 df -h
 free -h
 ss -tulnp
+```
