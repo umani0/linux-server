@@ -14,3 +14,38 @@ This mini-project demonstrates basic Linux server administration skills. The ser
 - Fail2Ban
 - systemd
 - journalctl
+  
+## Implemented Features
+
+- Installed and configured Ubuntu Server
+- Created users and groups
+- Configured SSH access
+- Configured UFW firewall
+- Installed and configured Nginx
+- Created a custom web page
+- Analyzed system and service logs
+- Created backup script for Nginx files
+- Automated backups using cron
+- Monitored CPU, RAM, disk and network usage
+
+## Server Configuration
+
+- OS: Ubuntu Server
+- CPU: 2 cores
+- RAM: 4 GB
+- Disk: 40 GB
+- Web Server: Nginx
+- Firewall: UFW
+- Backup: Bash + Cron
+
+## Useful Commands
+
+bash
+sudo systemctl status nginx
+sudo systemctl status ssh
+sudo ufw status verbose
+journalctl -u nginx
+journalctl -u ssh
+df -h
+free -h
+ss -tulnp
