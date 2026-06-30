@@ -221,8 +221,8 @@ The following screenshots were added to the project:
 * UFW firewall status
 * Backup result and Cron task
 * htop system monitoring
-* Docker container status (`docker ps`)
-* Docker stats checking (`docker stats`)
+* Docker container status 
+* Docker stats checking 
 * Working Telegram Bot in production
 
 ## 14. Skills Demonstrated
