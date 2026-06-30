@@ -27,9 +27,8 @@ This project demonstrates fundamental Linux server administration and applicatio
 - Analyzed system and service logs
 - Created backup script for Nginx files and automated them using cron
 - Monitored CPU, RAM, disk, and network usage
-- **Deployed an asynchronous AI Telegram Bot inside an isolated Docker container**
-- **Configured secure environment variables (`.env`) for sensitive API tokens**
-- **Performed container troubleshooting and application log analysis**
+- Deployed an asynchronous AI Telegram Bot inside an isolated Docker container
+- Performed container troubleshooting and application log analysis
 
 ## Deployed Applications
 
