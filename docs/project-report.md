@@ -116,7 +116,7 @@ Commands used:
 ```bash
 sudo apt install docker.io docker-compose git -y
 sudo usermod -aG docker $USER
-git clone [https://github.com/umani0/AITelegramBot.git](https://github.com/umani0/AITelegramBot.git)
+git clone https://github.com/umani0/AITelegramBot.git
 cd AITelegramBot
 docker-compose up -d --build
 ```
