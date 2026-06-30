@@ -4,7 +4,7 @@
 
 The goal of this project was to deploy and configure a Linux server in a virtualized environment and demonstrate basic system administration skills.
 
-The project included server installation, SSH access configuration, user and group management, firewall setup, Nginx web server deployment, backup automation, cron scheduling, log analysis and basic system monitoring.
+The project included server installation, SSH access configuration, user and group management, firewall setup, Nginx web server deployment, backup automation, cron scheduling, log analysis, basic system monitoring, and application containerization using Docker.
 
 ## 2. Environment
 
@@ -58,9 +58,7 @@ whoami
 groups
 ```
 
-An administrator user has sudo privileges, while a regular user does not have administrative access.
-
-This demonstrates the difference between privileged and non-privileged users in Linux.
+An administrator user has sudo privileges, while a regular user does not have administrative access. This demonstrates the difference between privileged and non-privileged users in Linux.
 
 ## 5. Firewall Configuration
 
@@ -104,12 +102,40 @@ The default web page was replaced with a custom HTML page located at:
 The web page was tested in the browser using:
 
 ```text
-http://127.0.0.1:8080
+[http://127.0.0.1:8080](http://127.0.0.1:8080)
 ```
 
 Result: the Nginx web page was successfully opened from the host machine.
 
-## 7. Backup Automation
+## 7. Docker Containerization & Application Deployment
+
+An asynchronous Python Telegram Bot (integrated with Google Gemini AI) was deployed to demonstrate application containerization and isolated environment management.
+
+Commands used:
+
+```bash
+sudo apt install docker.io docker-compose git -y
+sudo usermod -aG docker $USER
+git clone https://github.com/umani0/AITelegramBot.git
+cd AITelegramBot
+docker-compose up -d --build
+```
+
+Result: The application image was successfully built and the bot was launched inside an isolated Docker container.
+
+## 8. Security & Environment Variables
+
+To securely pass sensitive API keys (Telegram Bot Token and Gemini API Key) to the containerized application without hardcoding them, a hidden `.env` file was created and passed to the container via `docker-compose.yml`.
+
+Commands used:
+
+```bash
+echo -e "TG_TOKEN=your_token\nGEMINI_API_KEY=your_api_key" > .env
+```
+
+Result: Sensitive credentials were securely managed and successfully read by the application.
+
+## 9. Backup Automation
 
 A Bash script was created to back up Nginx website files.
 
@@ -125,11 +151,7 @@ Backup directory:
 /backup
 ```
 
-The script archives files from:
-
-```bash
-/var/www/html
-```
+The script archives files from `/var/www/html`.
 
 Command used to test the script:
 
@@ -139,7 +161,7 @@ sudo /opt/scripts/backup-nginx.sh
 
 Result: backup archive was successfully created in the `/backup` directory.
 
-## 8. Cron Task
+## 10. Cron Task
 
 Cron was configured to automatically run the backup script.
 
@@ -157,15 +179,9 @@ Cron task:
 
 This task runs the backup script every day at 02:00 and writes output to the log file.
 
-Cron task was checked with:
+## 11. Log Analysis & Troubleshooting
 
-```bash
-sudo crontab -l
-```
-
-## 9. Log Analysis
-
-System and service logs were checked using `journalctl` and log files.
+System services and application logs were analyzed to ensure proper operation and troubleshoot code errors.
 
 Commands used:
 
@@ -173,14 +189,14 @@ Commands used:
 sudo journalctl -u ssh -n 20
 sudo journalctl -u nginx -n 20
 sudo tail -n 20 /var/log/nginx/access.log
-sudo journalctl -u cron -n 20
+docker logs ai_telegram_bot
 ```
 
-Result: SSH, Nginx and cron logs were checked successfully.
+Result: SSH, Nginx, and Docker container logs were checked successfully. Container log analysis was utilized to fix Python import errors during deployment.
 
-## 10. System Monitoring
+## 12. System Monitoring
 
-Basic system monitoring was performed using Linux command-line tools.
+Basic system and container monitoring was performed using Linux command-line tools.
 
 Commands used:
 
@@ -188,52 +204,41 @@ Commands used:
 htop
 df -h
 free -h
-uptime
 ss -tulnp
+docker ps
+docker stats
 ```
 
-These commands were used to check:
+These commands were used to check resource usage, active ports, and the health status of running containers.
 
-* CPU usage
-* RAM usage
-* disk usage
-* system uptime
-* active network ports
-* running processes
-
-## 11. Screenshots
+## 13. Screenshots
 
 The following screenshots were added to the project:
 
 * SSH login
 * User and group check
-* Nginx status
-* Nginx page in browser
+* Nginx status and web page in browser
 * UFW firewall status
-* Backup result
-* Cron task
-* Nginx logs
+* Backup result and Cron task
 * htop system monitoring
+* Docker container status 
+* Docker stats checking 
+* Working Telegram Bot in production
 
-## 12. Skills Demonstrated
+## 14. Skills Demonstrated
 
 This project demonstrates the following skills:
 
-* Linux server installation
-* Command-line administration
-* SSH configuration
+* Linux server installation and CLI administration
+* SSH and UFW Firewall configuration
 * User and group management
-* Sudo permissions
-* Firewall configuration with UFW
 * Nginx web server setup
-* Bash scripting
-* Backup automation
-* Cron scheduling
-* Log analysis
-* Basic system monitoring
-* GitHub project documentation
+* Bash scripting and Cron scheduling
+* Application deployment using Docker & Docker Compose
+* Secure management of environment variables
+* Application troubleshooting via container logs
+* Basic system monitoring and GitHub project documentation
 
-## 13. Conclusion
+## 15. Conclusion
 
-As a result of this project, a working Ubuntu Server environment was deployed and configured. The server supports SSH access, runs an Nginx web server, has a configured firewall, includes user and group management, performs automated backups through cron and provides basic log analysis and system monitoring.
-
+As a result of this project, a fully functional Ubuntu Server environment was deployed and configured. The server securely supports SSH access, serves web content via Nginx, and hosts a containerized asynchronous Python application. The infrastructure includes automated backups, strong firewall rules, and robust log monitoring, demonstrating a solid foundation in Linux system administration.
