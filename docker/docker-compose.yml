@@ -1,0 +1,9 @@
+version: '3.3'
+
+services:
+  ai-bot:
+    build: .
+    container_name: ai_telegram_bot
+    restart: always
+    env_file:
+      - .env
